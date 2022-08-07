@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+<head>
+	<title> News Project by Kamal Sir </title>
+	<style type="text/css">
+		* { font-size:20px;font-family-courier;}	
+	</style>
+</head>
+<body>
+<center>
+	<h1> News App </h1>
+	<form method="POST">
+	{% csrf_token %}
+		<select name='src'>
+		<option value="the-times-of-india"> Times of India </option>
+		<option value="the-hindu"> The Hindu </option>
+	<select>
+	<br><br>
+	<input type="submit">
+	</form>
+	{% if src %}
+		<h2> News from {{ src }} </h2>
+		{% for i in info %}	
+		<h2> {{ i.title }} </h2>
+		<h2> <a href="{{i.url}}"> Read More </a></h2>
+		<img src={{ i.urlToImage}} </img>
+		<hr>
+
+		{% endfor %}
+	{% endif %}
+</center>
+</body>
+</html>
